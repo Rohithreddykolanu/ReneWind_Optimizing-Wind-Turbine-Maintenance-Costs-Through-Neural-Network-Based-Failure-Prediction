@@ -21,9 +21,9 @@ Wind energy is one of the most developed renewable technologies, and keeping tur
 
 The goal is to build several classification models, tune them, and select the one that best identifies failures so generators can be serviced before breaking. Because the cost of each prediction outcome differs, the model is judged on a cost basis rather than on accuracy alone. The outcomes translate into business costs as follows:
 
-- **True positive.** A correctly predicted failure, which results in a repair cost.
-- **False negative.** A missed real failure, which results in the most expensive replacement cost.
-- **False positive.** A false alarm, which results in a relatively cheap inspection cost.
+- **True positive:** A correctly predicted failure, which results in a repair cost.
+- **False negative:** A missed real failure, which results in the most expensive replacement cost.
+- **False positive:** A false alarm, which results in a relatively cheap inspection cost.
 
 Since a missed failure is the most expensive error, recall on the failure class is the primary metric, with total business cost used as the final selection criterion.
 
@@ -40,13 +40,13 @@ The 40 predictors are anonymized sensor and environmental features named V1 thro
 
 ## Approach
 
-1. **Data understanding.** Reviewed the shape, data types, and the strong class imbalance across the training and test sets.
-2. **Missing value treatment.** Imputed missing predictor values using a simple imputer so all features were complete before scaling.
-3. **Exploratory data analysis.** Studied univariate distributions and compared each predictor across the failure and no failure classes to identify the strongest discriminators.
-4. **Feature scaling.** Standardized the predictors so the neural networks trained on features with comparable scales.
-5. **Class imbalance handling.** Addressed the imbalance using SMOTE oversampling for most models and class weighting on the original data as an alternative strategy.
-6. **Modeling.** Built and tuned nine neural network architectures using the Keras Sequential API, varying depth, width, optimizers, and regularization.
-7. **Cost based selection.** Swept the decision threshold for the leading candidates against the ReneWind cost structure to choose the most cost efficient model, then confirmed the choice on the held out test set.
+1. **Data understanding:** Reviewed the shape, data types, and the strong class imbalance across the training and test sets.
+2. **Missing value treatment:** Imputed missing predictor values using a simple imputer so all features were complete before scaling.
+3. **Exploratory data analysis:** Studied univariate distributions and compared each predictor across the failure and no failure classes to identify the strongest discriminators.
+4. **Feature scaling:** Standardized the predictors so the neural networks trained on features with comparable scales.
+5. **Class imbalance handling:** Addressed the imbalance using SMOTE oversampling for most models and class weighting on the original data as an alternative strategy.
+6. **Modeling:** Built and tuned nine neural network architectures using the Keras Sequential API, varying depth, width, optimizers, and regularization.
+7. **Cost based selection:** Swept the decision threshold for the leading candidates against the ReneWind cost structure to choose the most cost efficient model, then confirmed the choice on the held out test set.
 
 ## Models
 
@@ -87,40 +87,6 @@ On the held out test set, the final Model 7 achieved accuracy of 0.9852, precisi
 - Implement a risk based maintenance strategy that prioritizes high risk turbines for immediate inspection while keeping low risk turbines on routine monitoring.
 - Continue prioritizing recall in future model development, since missed failures carry the highest cost.
 - Invest in sensor data quality, because prediction reliability depends directly on accurate and consistent readings.
-
-## Repository Structure
-
-```
-renewind-failure-prediction/
-├── README.md
-├── requirements.txt
-├── .gitignore
-├── data/
-│   ├── Train.csv                       # not committed (see .gitignore)
-│   └── Test.csv                        # not committed (see .gitignore)
-├── notebooks/
-│   └── renewind_failure_prediction.ipynb
-└── reports/
-    └── renewind_failure_prediction.html  # exported notebook
-```
-
-## Getting Started
-
-```bash
-# clone
-git clone https://github.com/<your-username>/renewind-failure-prediction.git
-cd renewind-failure-prediction
-
-# (optional) create a virtual environment
-python -m venv .venv
-source .venv/bin/activate        # Windows: .venv\Scripts\activate
-
-# install dependencies
-pip install -r requirements.txt
-
-# launch the notebook
-jupyter notebook notebooks/renewind_failure_prediction.ipynb
-```
 
 ## Tech Stack
 
