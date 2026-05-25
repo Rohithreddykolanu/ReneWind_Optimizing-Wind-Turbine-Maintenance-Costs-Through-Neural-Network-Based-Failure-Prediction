@@ -1,0 +1,2 @@
+# ReneWind_Optimizing-Wind-Turbine-Maintenance-Costs-Through-Neural-Network-Based-Failure-Prediction
+Neural network project predicting wind turbine generator failures for ReneWind to cut maintenance costs. Trains and tunes nine Keras models on 20,000 sensor records with 40 predictors, handles heavy class imbalance with SMOTE and class weighting, and selects the final model by minimizing repair, replacement, and inspection cost.
